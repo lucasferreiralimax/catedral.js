@@ -53,9 +53,8 @@
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     }
 
-    section h2 {
+    section .section-info {
       grid-column: 1 / -1;
-      /* Faz o título ocupar toda a largura da seção */
       font-size: 1.5rem;
       color: #333;
       margin-bottom: 10px;
@@ -158,6 +157,29 @@
       color: #ffd700;
       text-decoration: underline;
     }
+
+    .section-info {
+      background: #fff;
+      color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      text-align: center;
+    }
+
+    .section-info h2 {
+      font-size: 1.8rem;
+      margin-bottom: 10px;
+      font-family: "Arial", sans-serif;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    }
+
+    .section-info p {
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 10px;
+    }
+  </style>
   </style>
 </head>
 
@@ -187,7 +209,14 @@
   <main>
     <!-- Inputs para LocalStorage -->
     <section>
-      <h2>LocalStorage</h2>
+      <div class="section-info">
+        <h2>LocalStorage</h2>
+        <p>
+          Esta seção demonstra como usar o <strong>LocalStorage</strong> para armazenar dados localmente no navegador.
+          Inclui exemplos com e sem criptografia.
+        </p>
+      </div>
+
       <fieldset>
         <legend>Sem Criptografia</legend>
         <catedral-input-local-session id="input-local-name" label="Nome:" placeholder="Digite seu nome"
@@ -218,7 +247,13 @@
 
     <!-- Inputs para SessionStorage -->
     <section>
-      <h2>SessionStorage</h2>
+      <div class="section-info">
+        <h2>SessionStorage</h2>
+        <p>
+          Aqui você verá como usar o <strong>SessionStorage</strong> para armazenar dados temporários na sessão do navegador.
+          Inclui exemplos com e sem criptografia.
+        </p>
+      </div>
       <fieldset>
         <legend>Sem Criptografia</legend>
         <catedral-input-local-session id="input-session-age" label="Idade:" placeholder="Digite sua idade"
@@ -250,7 +285,13 @@
 
     <!-- Inputs para IndexedDB -->
     <section>
-      <h2>IndexedDB</h2>
+      <div class="section-info">
+        <h2>IndexedDB</h2>
+        <p>
+          Esta seção mostra como usar o <strong>IndexedDB</strong>, um banco de dados local no navegador, para armazenar dados
+          estruturados. Inclui exemplos com e sem criptografia.
+        </p>
+      </div>
       <fieldset>
         <legend>Sem Criptografia</legend>
         <catedral-input-indexeddb id="input-db-username" label="Usuário:" placeholder="Digite seu nome de usuário"
@@ -279,7 +320,13 @@
     </section>
 
     <section>
-      <h2>Exemplo de Modais</h2>
+      <div class="section-info">
+        <h2>Modais</h2>
+        <p>
+          Aqui estão exemplos de <strong>modais</strong> criados com o Catedral.js. Modais são úteis para exibir informações
+          ou interações em uma janela sobreposta.
+        </p>
+      </div>
       <catedral-modal id="modal1" title="Bem-vindo ao Modal 1" open-label="Abrir Modal 1">
         <p>Este é o conteúdo do primeiro modal.</p>
         <p>Você pode adicionar qualquer texto ou elementos aqui.</p>
@@ -292,7 +339,13 @@
     </section>
 
     <section class="tabs">
-      <h2>Exemplo de Tabs</h2>
+      <div class="section-info">
+        <h2>Tabs</h2>
+        <p>
+          Esta seção demonstra o uso de <strong>abas (tabs)</strong> para organizar conteúdo em diferentes painéis. 
+          Clique nas abas para alternar entre os conteúdos.
+        </p>
+      </div>
       <catedral-tabs active-tab="1">
         <!-- Abas -->
         <div slot="tab-1">Informações Gerais</div>
@@ -328,7 +381,13 @@
     </section>
 
     <section>
-      <h2>Exemplo de Botões</h2>
+      <div class="section-info">
+        <h2>Botões</h2>
+        <p>
+          Aqui estão exemplos de <strong>botões</strong> estilizados com o Catedral.js. Inclui variantes preenchidas, 
+          contornadas, tamanhos diferentes e personalizações.
+        </p>
+      </div>
 
       <!-- Botões com variantes preenchidas (filled) -->
       <catedral-button label="Primário Preenchido" variant="primary" appearance="filled"></catedral-button>
