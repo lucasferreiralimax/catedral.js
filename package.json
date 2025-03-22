@@ -1,6 +1,6 @@
 {
   "name": "catedral.js",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Biblioteca Catedral.js para gerenciamento dinâmico de inputs, outputs e estado reativo.",
   "main": "public/catedral.js",
   "type": "module",
