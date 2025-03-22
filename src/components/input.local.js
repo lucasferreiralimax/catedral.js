@@ -90,6 +90,7 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
     const componentName = "CatedralInputLocalSession"; // Nome do componente para logs
     const inputElement = this.shadowRoot.querySelector("input");
     const newValue = inputElement?.value || "";
+    const messageError = this.shadowRoot.querySelector(".message-error");
 
     // Validação do valor
     const validation = this.validateInput(newValue);
@@ -97,10 +98,14 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
       console.warn(`⚠️ [${componentName}] Validação falhou: ${validation.message}`);
       inputElement.setCustomValidity(validation.message);
       inputElement.reportValidity();
-      return;
+      messageError.innerHTML = validation.message;
+      messageError.classList.add("active");
+    } else {
+      messageError.innerHTML = "";
+      messageError.classList.remove("active");
+      inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     }
 
-    inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     clearTimeout(this.debounceTimeout);
 
     this.debounceTimeout = setTimeout(() => {
@@ -143,6 +148,20 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
         input:focus {
           border-color: #007bff;
         }
+        .message-error {
+          font-size: 12px;
+          padding: 5px 10px;
+          border: 1px solid #f00;
+          background: #ffe1e1;
+          border-radius: 5px;
+          margin: 0;
+          margin-bottom: 10px;
+          display: none;
+        }
+
+        .message-error.active {
+          display: block;
+        }
       </style>
       <input 
         id="${this.getAttribute("id")}" 
@@ -153,6 +172,7 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
         pattern="${this.getAttribute("pattern") || ""}"
         ${this.getAttribute("required") !== null ? "required" : ""}
       />
+      <p class="message-error">TESTE</p>
     `;
   }
 }
