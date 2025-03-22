@@ -5,7 +5,7 @@
 ## Recursos principais
 
 - **Gerenciamento de estado reativo**: Integração com LocalStorage, SessionStorage e IndexedDB.
-- **Web Components reutilizáveis**: Componentes como inputs, modais, abas e muito mais.
+- **Web Components reutilizáveis**: Componentes como inputs, modais, abas, botões e muito mais.
 - **Criptografia integrada**: Suporte a dados criptografados com AES para maior segurança.
 - **Acessibilidade**: Componentes projetados com foco em acessibilidade (ARIA-friendly).
 - **Fácil integração**: Funciona com qualquer framework ou aplicação vanilla JavaScript.
@@ -48,7 +48,35 @@ npm install catedral.js
 </html>
 ```
 
-### Exemplo com criptografia
+---
+
+### Exemplo de Botões
+
+```html
+<section>
+  <h2>Exemplo de Botões</h2>
+
+  <!-- Botões com variantes preenchidas -->
+  <catedral-button label="Primário" variant="primary" appearance="filled"></catedral-button>
+  <catedral-button label="Sucesso" variant="success" appearance="filled"></catedral-button>
+
+  <!-- Botões com variantes contornadas -->
+  <catedral-button label="Primário Contornado" variant="primary" appearance="outlined"></catedral-button>
+  <catedral-button label="Sucesso Contornado" variant="success" appearance="outlined"></catedral-button>
+
+  <!-- Botões com tamanhos -->
+  <catedral-button label="Pequeno" variant="primary" size="small"></catedral-button>
+  <catedral-button label="Grande" variant="primary" size="large"></catedral-button>
+
+  <!-- Botões com largura e altura personalizadas -->
+  <catedral-button label="Largura Total" variant="primary" full></catedral-button>
+  <catedral-button label="Customizado" variant="success" width="200px" height="50px"></catedral-button>
+</section>
+```
+
+---
+
+### Exemplo com Criptografia
 
 ```html
 <catedral-input-local-session
@@ -66,6 +94,8 @@ npm install catedral.js
 ></catedral-output>
 ```
 
+---
+
 ### Exemplo de Modal
 
 ```html
@@ -77,6 +107,8 @@ npm install catedral.js
   <p>Este é o conteúdo do segundo modal. Personalize conforme necessário.</p>
 </catedral-modal>
 ```
+
+---
 
 ### Exemplo de Tabs
 
@@ -125,12 +157,16 @@ npm install catedral.js
 </catedral-tabs>
 ```
 
+---
+
 ## Scripts
 
 - `npm run lint`: Executa o linter para verificar problemas no código.
 - `npm run docs`: Gera a documentação usando JSDoc.
 - `npm run build`: Gera a versão de produção da biblioteca.
 - `npm run dev`: Inicia o modo de desenvolvimento com watch.
+
+---
 
 ## Contribuição
 
@@ -142,11 +178,16 @@ Contribuições são bem-vindas! Por favor, siga os passos abaixo:
 4. Envie para o repositório remoto (`git push origin minha-feature`).
 5. Abra um Pull Request.
 
+---
+
 ## Links úteis
 
 - **Exemplo Online**: [https://catedral-javascript.web.app](https://catedral-javascript.web.app)
 
+---
+
 ## Licença
 
-Copyright (c) 2025 Lucas Ferreira  
+Copyright (c) 2025 Lucas Ferreira
+ 
 Este projeto está licenciado sob a licença MIT.
