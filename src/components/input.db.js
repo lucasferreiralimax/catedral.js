@@ -91,18 +91,22 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
   handleInputChange() {
     const componentName = "CatedralInputIndexedDB"; // Nome do componente para logs
     const inputElement = this.shadowRoot.querySelector("input");
+    const messageError = this.shadowRoot.querySelector(".message-error");
     const newValue = inputElement?.value || "";
 
     // Validação do valor
     const validation = this.validateInput(newValue);
     if (!validation.valid) {
       console.warn(`⚠️ [${componentName}] Validação falhou: ${validation.message}`);
-      inputElement.setCustomValidity(validation.message);
-      inputElement.reportValidity();
-      return;
+      // inputElement.setCustomValidity(validation.message);
+      // inputElement.reportValidity();
+      messageError.innerHTML = validation.message;
+      messageError.classList.add("active");
+    } else {
+      messageError.classList.remove("active");
+      // inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     }
 
-    inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     clearTimeout(this.debounceTimeout);
 
     this.debounceTimeout = setTimeout(() => {
@@ -148,6 +152,47 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
         p {
           margin: 0;
         }
+        .message-error {
+          font-size: 12px;
+          padding: 5px 10px;
+          border: 1px solid #f00;
+          background: #ffe1e1;
+          border-radius: 5px;
+          margin: 0;
+          position: absolute;
+          bottom: -30px;
+          left: 10px;
+          opacity: 0;
+          transition: .3s opacity;
+        }
+        .message-error.active {
+          opacity: 1;
+        }
+        .message-error::before {
+          content: "";
+          position: absolute;
+          top: -11px;
+          left: 15px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent #f00 transparent;
+        }
+        .message-error::after {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 15px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent #ffe1e1 transparent;
+        }
+        label {
+          position: relative;
+          display: block;
+        }
+        p {
+          margin: 0;
+        }
       </style>
       <label for="${this.getAttribute("id")}">
         ${this.getAttribute("label") ? `<p>${this.getAttribute("label")}</p>` : ``}
@@ -160,6 +205,7 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
           pattern="${this.getAttribute("pattern") || ""}"
           ${this.getAttribute("required") !== null ? "required" : ""}
         />
+        <p class="message-error"></p>
       </label>
     `;
   }
