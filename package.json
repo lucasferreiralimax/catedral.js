@@ -9,8 +9,7 @@
     "lint": "eslint . --ignore-pattern dist/",
     "docs": "jsdoc -c jsdoc.json",
     "build": "rollup -c",
-    "dev": "rollup -c --watch",
-    "publish": "npm run build && npm version patch && npm publish"
+    "dev": "rollup -c --watch"
   },
   "files": [
     "public/catedral.js",
