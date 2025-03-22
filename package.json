@@ -1,0 +1,50 @@
+{
+  "name": "catedral.js",
+  "version": "1.0.4",
+  "description": "Biblioteca Catedral.js para gerenciamento dinâmico de inputs, outputs e estado reativo.",
+  "main": "public/catedral.js",
+  "type": "module",
+  "private": false,
+  "scripts": {
+    "lint": "eslint . --ignore-pattern dist/",
+    "docs": "jsdoc -c jsdoc.json",
+    "build": "rollup -c",
+    "dev": "rollup -c --watch"
+  },
+  "files": [
+    "public/catedral.js",
+    "README.md",
+    "LICENSE"
+  ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./public/catedral.js",
+      "default": "./public/catedral.js"
+    }
+  },
+  "keywords": [
+    "catedral",
+    "state-management",
+    "web-components",
+    "inputs",
+    "outputs"
+  ],
+  "author": "Lucas Ferreira de Lima <lucasferreiralimax@gmail.com>",
+  "license": "MIT",
+  "homepage": "https://catedral-javascript.web.app",
+  "dependencies": {
+    "crypto-js": "^4.2.0"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.22.0",
+    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "eslint": "^8.57.1",
+    "globals": "^16.0.0",
+    "jsdoc": "^3.6.11",
+    "rollup": "^4.36.0",
+    "rollup-plugin-strip": "^1.2.2"
+  }
+}
