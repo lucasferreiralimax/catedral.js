@@ -98,10 +98,12 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
       console.warn(`⚠️ [${componentName}] Validação falhou: ${validation.message}`);
       // inputElement.setCustomValidity(validation.message);
       // inputElement.reportValidity();
+      inputElement.classList.add("error");
       messageError.innerHTML = validation.message;
       messageError.classList.add("active");
     } else {
       messageError.classList.remove("active");
+      inputElement.classList.remove("error");
       // inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     }
 
@@ -146,6 +148,9 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
         }
         input:focus {
           border-color: #007bff;
+        }
+        input.error {
+          border-color: #f00;
         }
         .message-error {
           font-size: 12px;

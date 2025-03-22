@@ -101,9 +101,11 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
       // inputElement.setCustomValidity(validation.message);
       // inputElement.reportValidity();
       messageError.innerHTML = validation.message;
+      inputElement.classList.add("error");
       messageError.classList.add("active");
     } else {
       messageError.classList.remove("active");
+      inputElement.classList.remove("error");
       // inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     }
 
@@ -148,6 +150,9 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
         }
         input:focus {
           border-color: #007bff;
+        }
+        input.error {
+          border-color: #f00;
         }
         p {
           margin: 0;
