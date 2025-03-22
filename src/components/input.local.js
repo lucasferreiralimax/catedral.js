@@ -21,11 +21,32 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
   }
 
   async afterRender() {
+    super.afterRender();
     const componentName = "CatedralInputLocalSession"; // Nome do componente para logs
     console.log(`✨ [${componentName}] Componente Local/Session renderizado. Inicializando listeners...`);
     this.initializeListeners();
     this.subscribeToStore();
     this.updateInputValue(); // Atualiza o valor do input após a renderização
+
+    const inputElement = this.shadowRoot.querySelector("input");
+    const clearButton = this.shadowRoot.querySelector(".clear-button");
+
+    if (inputElement && clearButton) {
+      // Mostra o botão "X" se o input já tiver valor ao carregar
+      clearButton.classList.toggle("active", inputElement.value.length > 0);
+
+      // Mostra o botão "X" quando o input tem valor
+      inputElement.addEventListener("input", () => {
+        clearButton.classList.toggle("active", inputElement.value.length > 0);
+      });
+
+      // Limpa o input ao clicar no botão "X"
+      clearButton.addEventListener("click", () => {
+        inputElement.value = "";
+        clearButton.classList.remove("active");
+        this.handleInputChange(); // Atualiza o estado após limpar
+      });
+    }
   }
 
   async initStore() {
@@ -190,21 +211,37 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
           position: relative;
           display: block;
         }
-        p {
-          margin: 0;
+        .clear-button {
+          position: absolute;
+          top: calc(50% - 4px);
+          right: 10px;
+          transform: translateY(-50%);
+          background: none;
+          color: #000;
+          border: none;
+          font-size: 22px;
+          font-weight: bold;
+          cursor: pointer;
+          display: none;
+        }
+        .clear-button.active {
+          display: block;
         }
       </style>
       <label for="${this.getAttribute("id")}">
         ${this.getAttribute("label") ? `<p>${this.getAttribute("label")}</p>` : ``}
-        <input 
-          id="${this.getAttribute("id")}" 
-          type="${this.getAttribute("type") || "text"}" 
-          placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
-          minlength="${this.getAttribute("minlength") || ""}"
-          maxlength="${this.getAttribute("maxlength") || ""}"
-          pattern="${this.getAttribute("pattern") || ""}"
-          ${this.getAttribute("required") !== null ? "required" : ""}
-        />
+        <div style="position: relative;">
+          <input 
+            id="${this.getAttribute("id")}" 
+            type="${this.getAttribute("type") || "text"}" 
+            placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
+            minlength="${this.getAttribute("minlength") || ""}"
+            maxlength="${this.getAttribute("maxlength") || ""}"
+            pattern="${this.getAttribute("pattern") || ""}"
+            ${this.getAttribute("required") !== null ? "required" : ""}
+          />
+          <button type="button" class="clear-button">×</button>
+        </div>
         <p class="message-error"></p>
       </label>
     `;
