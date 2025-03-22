@@ -62,6 +62,13 @@ export { default as CatedralLogo } from './components/logo.js';
 export { default as CatedralModal } from './components/modal.js';
 
 /**
+ * Componente de Tabs.
+ * Permite criar abas interativas com painéis associados.
+ * @see {@link ./components/tabs.js}
+ */
+export { default as CatedralTabs } from './components/tabs.js';
+
+/**
  * Hub central para gerenciamento de múltiplos stores.
  * Contém instâncias de stores para LocalStorage, SessionStorage e IndexedDB.
  * @see {@link ./stores/hub.store.js}
