@@ -55,6 +55,13 @@ export { default as CatedralOutput } from './components/output.js';
 export { default as CatedralLogo } from './components/logo.js';
 
 /**
+ * Componente de Modal.
+ * Exibe um modal da biblioteca Catedral.js.
+ * @see {@link ./components/modal.js}
+ */
+export { default as CatedralModal } from './components/modal.js';
+
+/**
  * Hub central para gerenciamento de múltiplos stores.
  * Contém instâncias de stores para LocalStorage, SessionStorage e IndexedDB.
  * @see {@link ./stores/hub.store.js}

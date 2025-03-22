@@ -1,395 +1,290 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Catedral.js</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Licorice&display=swap"
-      rel="stylesheet"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
-    <script type="module" src="./catedral.js"></script>
-    <style>
-      /* Reset básico de estilo */
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      /* Corpo da página */
-      body {
-        font-family: "Arial", sans-serif;
-        background-color: #f9f9f9;
-        color: #333;
-        line-height: 1.6;
-        padding: 20px;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Catedral.js</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Licorice&display=swap" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.2.0/crypto-js.min.js"></script>
+  <script type="module" src="./catedral.js"></script>
+  <style>
+    /* Reset básico de estilo */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
+    /* Corpo da página */
+    body {
+      font-family: "Arial", sans-serif;
+      background-color: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+      padding: 20px;
+    }
+
+    main {
+      display: grid;
+      gap: 20px;
+      /* Espaçamento entre as sections */
+      justify-content: center;
+      /* Centraliza as sections no grid */
+      grid-template-columns: 1fr;
+    }
+
+    /* Seção de inputs */
+    section {
+      width: 100%;
+      /* Garante que as sections ocupem 100% do espaço disponível */
+      display: grid;
+      grid-template-columns: 1fr;
+      /* Inicialmente, uma coluna */
+      gap: 10px;
+      /* Espaçamento entre os elementos */
+      margin-bottom: 30px;
+      background: #eee;
+      border-radius: 10px;
+      padding: 1rem;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    section h2 {
+      grid-column: 1 / -1;
+      /* Faz o título ocupar toda a largura da seção */
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    fieldset {
+      border: 1px solid #ccc;
+      padding: 15px;
+      border-radius: 5px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    legend {
+      font-weight: bold;
+      color: #007bff;
+      text-align: center;
+      background: #fff;
+      padding: 1rem;
+      border-radius: 5px 5px 0 0;
+      box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
+    }
+
+    hr {
+      border: 0;
+      height: 1px;
+      background: #ccc;
+      margin: 20px 0;
+    }
+
+    /* Botões */
+    .button-container {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 20px;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+    }
+
+    .text-red {
+      color: #f00;
+    }
+
+    @media (min-width: 768px) {
       main {
-        display: grid;
-        gap: 20px; /* Espaçamento entre as sections */
-        justify-content: center; /* Centraliza as sections no grid */
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
       }
 
-      /* Seção de inputs */
       section {
-        width: 100%; /* Garante que as sections ocupem 100% do espaço disponível */
         display: grid;
-        grid-template-columns: 1fr; /* Inicialmente, uma coluna */
-        gap: 20px; /* Espaçamento entre os elementos */
-        margin-bottom: 30px;
-        background: #eee;
-        border-radius: 10px;
-        padding: 1rem;
-        border: 1px solid #ccc;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        grid-template-columns: repeat(2, 1fr);
+        /* Exatamente 2 colunas */
+        gap: 20px;
+        /* Espaçamento entre os elementos */
       }
 
-      section h2 {
-        grid-column: 1 / -1; /* Faz o título ocupar toda a largura da seção */
-        font-size: 1.5rem;
-        color: #333;
-        margin-bottom: 10px;
-        text-align: center;
-      }
-
-      fieldset {
-        border: 1px solid #ccc;
-        padding: 15px;
-        border-radius: 5px;
-        background-color: #fff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-      }
-
-      legend {
-        font-weight: bold;
-        color: #007bff;
-        text-align: center;
-        background: #fff;
-        padding: 1rem;
-        border-radius: 5px 5px 0 0;
-        box-shadow: 0 -2px 2px rgba(0, 0, 0, 0.1);
-      }
-
-      hr {
-        border: 0;
-        height: 1px;
-        background: #ccc;
-        margin: 20px 0;
-      }
-
-      /* Botões */
       .button-container {
-        display: flex;
-        gap: 10px;
-        margin-bottom: 20px;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
+        flex-direction: row;
       }
+    }
+  </style>
+</head>
 
-      .text-red {
-        color: #f00;
-      }
+<body>
+  <catedral-logo></catedral-logo>
 
-      @media (min-width: 768px) {
-        main {
-          grid-template-columns: repeat(auto-fit, minmax(600px, 1fr));
-        }
-        section {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr); /* Exatamente 2 colunas */
-          gap: 20px; /* Espaçamento entre os elementos */
-        }
+  <!-- Botões -->
+  <div class="button-container">
+    <catedral-button id="fill-inputs" label="Preencher todos os campos"></catedral-button>
+    <catedral-button id="clear-inputs" label="Limpar todos os inputs"></catedral-button>
+  </div>
 
-        .button-container {
-          flex-direction: row;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <catedral-logo></catedral-logo>
+  <main>
+    <!-- Inputs para LocalStorage -->
+    <section>
+      <h2>LocalStorage</h2>
+      <fieldset>
+        <legend>Sem Criptografia</legend>
+        <catedral-input-local-session id="input-local-name" label="Nome:" placeholder="Digite seu nome"
+          data-store="local" aria-label="Nome no LocalStorage" minlength="3" required></catedral-input-local-session>
+        <catedral-output store="globalStoreLocal" key="inputLocalName"></catedral-output>
 
-    <!-- Botões -->
-    <div class="button-container">
-      <catedral-button
-        id="fill-inputs"
-        label="Preencher todos os campos"
-      ></catedral-button>
-      <catedral-button
-        id="clear-inputs"
-        label="Limpar todos os inputs"
-      ></catedral-button>
-    </div>
+        <catedral-input-local-session id="input-local-email" label="E-mail:" placeholder="Digite seu e-mail"
+          type="email" data-store="local" aria-label="E-mail no LocalStorage" minlength="6"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreLocal" key="inputLocalEmail"></catedral-output>
+      </fieldset>
 
-    <main>
-      <!-- Inputs para LocalStorage -->
-      <section>
-        <h2>LocalStorage</h2>
-        <fieldset>
-          <legend>Sem Criptografia</legend>
-          <catedral-input-local-session
-            id="input-local-name"
-            label="Nome:"
-            placeholder="Digite seu nome"
-            data-store="local"
-            aria-label="Nome no LocalStorage"
-            minlength="3"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreLocal"
-            key="inputLocalName"
-          ></catedral-output>
+      <fieldset>
+        <legend class="text-red">Com Criptografia</legend>
+        <catedral-input-local-session id="input-local-name-encrypted" label="Nome:" placeholder="Digite seu nome"
+          data-store="local" data-encrypt="true" aria-label="Nome no LocalStorage Criptografado" minlength="3"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreLocalEncrypt" key="inputLocalNameEncrypted"
+          data-encrypt="true"></catedral-output>
 
-          <catedral-input-local-session
-            id="input-local-email"
-            label="E-mail:"
-            placeholder="Digite seu e-mail"
-            type="email"
-            data-store="local"
-            aria-label="E-mail no LocalStorage"
-            minlength="6"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreLocal"
-            key="inputLocalEmail"
-          ></catedral-output>
-        </fieldset>
+        <catedral-input-local-session id="input-local-email-encrypted" label="E-mail:" placeholder="Digite seu e-mail"
+          data-store="local" data-encrypt="true" type="email" aria-label="E-mail no LocalStorage Criptografado"
+          minlength="6" required></catedral-input-local-session>
+        <catedral-output store="globalStoreLocalEncrypt" key="inputLocalEmailEncrypted"
+          data-encrypt="true"></catedral-output>
+      </fieldset>
+    </section>
 
-        <fieldset>
-          <legend class="text-red">Com Criptografia</legend>
-          <catedral-input-local-session
-            id="input-local-name-encrypted"
-            label="Nome:"
-            placeholder="Digite seu nome"
-            data-store="local"
-            data-encrypt="true"
-            aria-label="Nome no LocalStorage Criptografado"
-            minlength="3"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreLocalEncrypt"
-            key="inputLocalNameEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
+    <!-- Inputs para SessionStorage -->
+    <section>
+      <h2>SessionStorage</h2>
+      <fieldset>
+        <legend>Sem Criptografia</legend>
+        <catedral-input-local-session id="input-session-age" label="Idade:" placeholder="Digite sua idade"
+          data-store="session" type="number" aria-label="Idade no SessionStorage"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreSession" key="inputSessionAge"></catedral-output>
 
-          <catedral-input-local-session
-            id="input-local-email-encrypted"
-            label="E-mail:"
-            placeholder="Digite seu e-mail"
-            data-store="local"
-            data-encrypt="true"
-            type="email"
-            aria-label="E-mail no LocalStorage Criptografado"
-            minlength="6"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreLocalEncrypt"
-            key="inputLocalEmailEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
-        </fieldset>
-      </section>
+        <catedral-input-local-session id="input-session-city" label="Cidade:" placeholder="Digite sua cidade"
+          data-store="session" aria-label="Cidade no SessionStorage" minlength="3"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreSession" key="inputSessionCity"></catedral-output>
+      </fieldset>
 
-      <!-- Inputs para SessionStorage -->
-      <section>
-        <h2>SessionStorage</h2>
-        <fieldset>
-          <legend>Sem Criptografia</legend>
-          <catedral-input-local-session
-            id="input-session-age"
-            label="Idade:"
-            placeholder="Digite sua idade"
-            data-store="session"
-            type="number"
-            aria-label="Idade no SessionStorage"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreSession"
-            key="inputSessionAge"
-          ></catedral-output>
+      <fieldset>
+        <legend class="text-red">Com Criptografia</legend>
+        <catedral-input-local-session id="input-session-age-encrypted" label="Idade:" placeholder="Digite sua idade"
+          data-store="session" data-encrypt="true" type="number" aria-label="Idade no SessionStorage Criptografado"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreSessionEncrypt" key="inputSessionAgeEncrypted"
+          data-encrypt="true"></catedral-output>
 
-          <catedral-input-local-session
-            id="input-session-city"
-            label="Cidade:"
-            placeholder="Digite sua cidade"
-            data-store="session"
-            aria-label="Cidade no SessionStorage"
-            minlength="3"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreSession"
-            key="inputSessionCity"
-          ></catedral-output>
-        </fieldset>
+        <catedral-input-local-session id="input-session-city-encrypted" label="Cidade:" placeholder="Digite sua cidade"
+          data-store="session" data-encrypt="true" aria-label="Cidade no SessionStorage Criptografado" minlength="3"
+          required></catedral-input-local-session>
+        <catedral-output store="globalStoreSessionEncrypt" key="inputSessionCityEncrypted"
+          data-encrypt="true"></catedral-output>
+      </fieldset>
+    </section>
 
-        <fieldset>
-          <legend class="text-red">Com Criptografia</legend>
-          <catedral-input-local-session
-            id="input-session-age-encrypted"
-            label="Idade:"
-            placeholder="Digite sua idade"
-            data-store="session"
-            data-encrypt="true"
-            type="number"
-            aria-label="Idade no SessionStorage Criptografado"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreSessionEncrypt"
-            key="inputSessionAgeEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
+    <!-- Inputs para IndexedDB -->
+    <section>
+      <h2>IndexedDB</h2>
+      <fieldset>
+        <legend>Sem Criptografia</legend>
+        <catedral-input-indexeddb id="input-db-username" label="Usuário:" placeholder="Digite seu nome de usuário"
+          data-store="db" aria-label="Nome de Usuário no IndexedDB" minlength="3" required></catedral-input-indexeddb>
+        <catedral-output store="globalStoreDB" key="inputDbUsername"></catedral-output>
 
-          <catedral-input-local-session
-            id="input-session-city-encrypted"
-            label="Cidade:"
-            placeholder="Digite sua cidade"
-            data-store="session"
-            data-encrypt="true"
-            aria-label="Cidade no SessionStorage Criptografado"
-            minlength="3"
-            required
-          ></catedral-input-local-session>
-          <catedral-output
-            store="globalStoreSessionEncrypt"
-            key="inputSessionCityEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
-        </fieldset>
-      </section>
+        <catedral-input-indexeddb id="input-db-password" label="Senha:" placeholder="Digite sua senha" data-store="db"
+          aria-label="Senha no IndexedDB" minlength="4" required></catedral-input-indexeddb>
+        <catedral-output store="globalStoreDB" key="inputDbPassword"></catedral-output>
+      </fieldset>
 
-      <!-- Inputs para IndexedDB -->
-      <section>
-        <h2>IndexedDB</h2>
-        <fieldset>
-          <legend>Sem Criptografia</legend>
-          <catedral-input-indexeddb
-            id="input-db-username"
-            label="Usuário:"
-            placeholder="Digite seu nome de usuário"
-            data-store="db"
-            aria-label="Nome de Usuário no IndexedDB"
-            minlength="3"
-            required
-          ></catedral-input-indexeddb>
-          <catedral-output
-            store="globalStoreDB"
-            key="inputDbUsername"
-          ></catedral-output>
+      <fieldset>
+        <legend class="text-red">Com Criptografia</legend>
+        <catedral-input-indexeddb id="input-db-username-encrypted" label="Usuário:"
+          placeholder="Digite seu nome de usuário" data-store="db" data-encrypt="true"
+          aria-label="Nome de Usuário no IndexedDB Criptografado" minlength="3" required></catedral-input-indexeddb>
+        <catedral-output store="globalStoreEncryptDB" key="inputDbUsernameEncrypted"
+          data-encrypt="true"></catedral-output>
 
-          <catedral-input-indexeddb
-            id="input-db-password"
-            label="Senha:"
-            placeholder="Digite sua senha"
-            data-store="db"
-            aria-label="Senha no IndexedDB"
-            minlength="4"
-            required
-          ></catedral-input-indexeddb>
-          <catedral-output
-            store="globalStoreDB"
-            key="inputDbPassword"
-          ></catedral-output>
-        </fieldset>
+        <catedral-input-indexeddb id="input-db-password-encrypted" label="Senha:" placeholder="Digite sua senha"
+          type="password" data-store="db" data-encrypt="true" aria-label="Senha no IndexedDB Criptografado"
+          minlength="4" required></catedral-input-indexeddb>
+        <catedral-output store="globalStoreEncryptDB" key="inputDbPasswordEncrypted"
+          data-encrypt="true"></catedral-output>
+      </fieldset>
+    </section>
 
-        <fieldset>
-          <legend class="text-red">Com Criptografia</legend>
-          <catedral-input-indexeddb
-            id="input-db-username-encrypted"
-            label="Usuário:"
-            placeholder="Digite seu nome de usuário"
-            data-store="db"
-            data-encrypt="true"
-            aria-label="Nome de Usuário no IndexedDB Criptografado"
-            minlength="3"
-            required
-          ></catedral-input-indexeddb>
-          <catedral-output
-            store="globalStoreEncryptDB"
-            key="inputDbUsernameEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
+    <section>
+      <h2>Exemplo de Modais</h2>
+      <catedral-modal id="modal1" title="Bem-vindo ao Modal 1" open-label="Abrir Modal 1">
+        <p>Este é o conteúdo do primeiro modal.</p>
+        <p>Você pode adicionar qualquer texto ou elementos aqui.</p>
+      </catedral-modal>
 
-          <catedral-input-indexeddb
-            id="input-db-password-encrypted"
-            label="Senha:"
-            placeholder="Digite sua senha"
-            type="password"
-            data-store="db"
-            data-encrypt="true"
-            aria-label="Senha no IndexedDB Criptografado"
-            minlength="4"
-            required
-          ></catedral-input-indexeddb>
-          <catedral-output
-            store="globalStoreEncryptDB"
-            key="inputDbPasswordEncrypted"
-            data-encrypt="true"
-          ></catedral-output>
-        </fieldset>
-      </section>
-    </main>
+      <catedral-modal id="modal2" title="Bem-vindo ao Modal 2" open-label="Abrir Modal 2">
+        <p>Este é o conteúdo do segundo modal.</p>
+        <p>Personalize conforme necessário.</p>
+      </catedral-modal>
+    </section>
+  </main>
 
-    <script>
-      // Função para preencher todos os campos.
-      document.getElementById("fill-inputs").addEventListener("click", () => {
-        const components = document.querySelectorAll(
-          "catedral-input-local-session, catedral-input-indexeddb"
-        );
-        components.forEach((component) => {
-          const shadowInput = component.shadowRoot?.querySelector("input"); // Acessa o input dentro do Shadow DOM
-          if (shadowInput) {
-            // Verifica IDs específicos para definir valores personalizados
-            switch (component.id) {
-              case "input-session-age":
-              case "input-session-age-encrypted":
-                shadowInput.value = "2"; // Define o valor como "2" para esses IDs
-                break;
+  <script>
+    // Função para preencher todos os campos.
+    document.getElementById("fill-inputs").addEventListener("click", () => {
+      const components = document.querySelectorAll(
+        "catedral-input-local-session, catedral-input-indexeddb"
+      );
+      components.forEach((component) => {
+        const shadowInput = component.shadowRoot?.querySelector("input"); // Acessa o input dentro do Shadow DOM
+        if (shadowInput) {
+          // Verifica IDs específicos para definir valores personalizados
+          switch (component.id) {
+            case "input-session-age":
+            case "input-session-age-encrypted":
+              shadowInput.value = "2"; // Define o valor como "2" para esses IDs
+              break;
 
-              case "input-session-city":
-              case "input-session-city-encrypted":
-                shadowInput.value = "Pombal"; // Define o valor como "Pombal" para esses IDs
-                break;
+            case "input-session-city":
+            case "input-session-city-encrypted":
+              shadowInput.value = "Pombal"; // Define o valor como "Pombal" para esses IDs
+              break;
 
-              case "input-local-email":
-              case "input-local-email-encrypted":
-                shadowInput.value = "amor@pucminas.br"; // Define o valor como "amor@pucminas.br" para esses IDs
-                break;
+            case "input-local-email":
+            case "input-local-email-encrypted":
+              shadowInput.value = "amor@pucminas.br"; // Define o valor como "amor@pucminas.br" para esses IDs
+              break;
 
-              default:
-                shadowInput.value = "Amor"; // Define o valor padrão para os demais inputs
-            }
-            shadowInput.dispatchEvent(new Event("input")); // Dispara o evento de input para atualizar o estado
+            default:
+              shadowInput.value = "Amor"; // Define o valor padrão para os demais inputs
           }
-        });
+          shadowInput.dispatchEvent(new Event("input")); // Dispara o evento de input para atualizar o estado
+        }
       });
+    });
 
-      // Função para limpar todos os inputs
-      document.getElementById("clear-inputs").addEventListener("click", () => {
-        const components = document.querySelectorAll(
-          "catedral-input-local-session, catedral-input-indexeddb"
-        );
-        components.forEach((component) => {
-          const shadowInput = component.shadowRoot?.querySelector("input"); // Acessa o input dentro do Shadow DOM
-          if (shadowInput) {
-            shadowInput.value = ""; // Limpa o valor do input
-            shadowInput.dispatchEvent(new Event("input")); // Dispara o evento de input para atualizar o estado
-          }
-        });
+    // Função para limpar todos os inputs
+    document.getElementById("clear-inputs").addEventListener("click", () => {
+      const components = document.querySelectorAll(
+        "catedral-input-local-session, catedral-input-indexeddb"
+      );
+      components.forEach((component) => {
+        const shadowInput = component.shadowRoot?.querySelector("input"); // Acessa o input dentro do Shadow DOM
+        if (shadowInput) {
+          shadowInput.value = ""; // Limpa o valor do input
+          shadowInput.dispatchEvent(new Event("input")); // Dispara o evento de input para atualizar o estado
+        }
       });
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>
