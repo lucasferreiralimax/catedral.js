@@ -3,7 +3,7 @@ import hubStore from "../stores/hub.store.js";
 
 export default class CatedralInputLocalSession extends CatedralInputValidator {
   static get observedAttributes() {
-    return ["id", "placeholder", "type", "data-encrypt", "data-store", "required", "minlength", "maxlength", "pattern"];
+    return ["id", "placeholder", "label", "type", "data-encrypt", "data-store", "required", "minlength", "maxlength", "pattern"];
   }
 
   constructor() {
@@ -96,14 +96,13 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
     const validation = this.validateInput(newValue);
     if (!validation.valid) {
       console.warn(`⚠️ [${componentName}] Validação falhou: ${validation.message}`);
-      inputElement.setCustomValidity(validation.message);
-      inputElement.reportValidity();
+      // inputElement.setCustomValidity(validation.message);
+      // inputElement.reportValidity();
       messageError.innerHTML = validation.message;
       messageError.classList.add("active");
     } else {
-      messageError.innerHTML = "";
       messageError.classList.remove("active");
-      inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
+      // inputElement.setCustomValidity(""); // Limpa mensagens de erro se válido
     }
 
     clearTimeout(this.debounceTimeout);
@@ -155,24 +154,54 @@ export default class CatedralInputLocalSession extends CatedralInputValidator {
           background: #ffe1e1;
           border-radius: 5px;
           margin: 0;
-          margin-bottom: 10px;
-          display: none;
+          position: absolute;
+          bottom: -30px;
+          left: 10px;
+          opacity: 0;
+          transition: .3s opacity;
         }
-
         .message-error.active {
+          opacity: 1;
+        }
+        .message-error::before {
+          content: "";
+          position: absolute;
+          top: -11px;
+          left: 15px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent #f00 transparent;
+        }
+        .message-error::after {
+          content: "";
+          position: absolute;
+          top: -10px;
+          left: 15px;
+          border-width: 5px;
+          border-style: solid;
+          border-color: transparent transparent #ffe1e1 transparent;
+        }
+        label {
+          position: relative;
           display: block;
         }
+        p {
+          margin: 0;
+        }
       </style>
-      <input 
-        id="${this.getAttribute("id")}" 
-        type="${this.getAttribute("type") || "text"}" 
-        placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
-        minlength="${this.getAttribute("minlength") || ""}"
-        maxlength="${this.getAttribute("maxlength") || ""}"
-        pattern="${this.getAttribute("pattern") || ""}"
-        ${this.getAttribute("required") !== null ? "required" : ""}
-      />
-      <p class="message-error">TESTE</p>
+      <label for="${this.getAttribute("id")}">
+        ${this.getAttribute("label") ? `<p>${this.getAttribute("label")}</p>` : ``}
+        <input 
+          id="${this.getAttribute("id")}" 
+          type="${this.getAttribute("type") || "text"}" 
+          placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
+          minlength="${this.getAttribute("minlength") || ""}"
+          maxlength="${this.getAttribute("maxlength") || ""}"
+          pattern="${this.getAttribute("pattern") || ""}"
+          ${this.getAttribute("required") !== null ? "required" : ""}
+        />
+        <p class="message-error"></p>
+      </label>
     `;
   }
 }

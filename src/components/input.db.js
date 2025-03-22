@@ -3,7 +3,7 @@ import hubStore from "../stores/hub.store.js";
 
 export default class CatedralInputIndexedDB extends CatedralInputValidator {
   static get observedAttributes() {
-    return ["id", "placeholder", "type", "data-encrypt", "data-store", "required", "minlength", "maxlength", "pattern"];
+    return ["id", "placeholder", "label", "type", "data-encrypt", "data-store", "required", "minlength", "maxlength", "pattern"];
   }
 
   constructor() {
@@ -145,16 +145,22 @@ export default class CatedralInputIndexedDB extends CatedralInputValidator {
         input:focus {
           border-color: #007bff;
         }
+        p {
+          margin: 0;
+        }
       </style>
-      <input
-        id="${this.getAttribute("id")}"
-        type="${this.getAttribute("type") || "text"}"
-        placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
-        minlength="${this.getAttribute("minlength") || ""}"
-        maxlength="${this.getAttribute("maxlength") || ""}"
-        pattern="${this.getAttribute("pattern") || ""}"
-        ${this.getAttribute("required") !== null ? "required" : ""}
-      />
+      <label for="${this.getAttribute("id")}">
+        ${this.getAttribute("label") ? `<p>${this.getAttribute("label")}</p>` : ``}
+        <input
+          id="${this.getAttribute("id")}"
+          type="${this.getAttribute("type") || "text"}"
+          placeholder="${this.getAttribute("placeholder") || "Digite algo..."}"
+          minlength="${this.getAttribute("minlength") || ""}"
+          maxlength="${this.getAttribute("maxlength") || ""}"
+          pattern="${this.getAttribute("pattern") || ""}"
+          ${this.getAttribute("required") !== null ? "required" : ""}
+        />
+      </label>
     `;
   }
 }

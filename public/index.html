@@ -136,9 +136,12 @@
           <legend>Sem Criptografia</legend>
           <catedral-input-local-session
             id="input-local-name"
+            label="Nome:"
             placeholder="Digite seu nome"
             data-store="local"
             aria-label="Nome no LocalStorage"
+            minlength="3"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreLocal"
@@ -147,10 +150,13 @@
 
           <catedral-input-local-session
             id="input-local-email"
+            label="E-mail:"
             placeholder="Digite seu e-mail"
             type="email"
             data-store="local"
             aria-label="E-mail no LocalStorage"
+            minlength="6"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreLocal"
@@ -162,10 +168,13 @@
           <legend class="text-red">Com Criptografia</legend>
           <catedral-input-local-session
             id="input-local-name-encrypted"
+            label="Nome:"
             placeholder="Digite seu nome"
             data-store="local"
             data-encrypt="true"
             aria-label="Nome no LocalStorage Criptografado"
+            minlength="3"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreLocalEncrypt"
@@ -175,11 +184,14 @@
 
           <catedral-input-local-session
             id="input-local-email-encrypted"
+            label="E-mail:"
             placeholder="Digite seu e-mail"
             data-store="local"
             data-encrypt="true"
             type="email"
             aria-label="E-mail no LocalStorage Criptografado"
+            minlength="6"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreLocalEncrypt"
@@ -196,10 +208,12 @@
           <legend>Sem Criptografia</legend>
           <catedral-input-local-session
             id="input-session-age"
+            label="Idade:"
             placeholder="Digite sua idade"
             data-store="session"
             type="number"
             aria-label="Idade no SessionStorage"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreSession"
@@ -208,9 +222,12 @@
 
           <catedral-input-local-session
             id="input-session-city"
+            label="Cidade:"
             placeholder="Digite sua cidade"
             data-store="session"
             aria-label="Cidade no SessionStorage"
+            minlength="3"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreSession"
@@ -222,11 +239,13 @@
           <legend class="text-red">Com Criptografia</legend>
           <catedral-input-local-session
             id="input-session-age-encrypted"
+            label="Idade:"
             placeholder="Digite sua idade"
             data-store="session"
             data-encrypt="true"
             type="number"
             aria-label="Idade no SessionStorage Criptografado"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreSessionEncrypt"
@@ -236,10 +255,13 @@
 
           <catedral-input-local-session
             id="input-session-city-encrypted"
+            label="Cidade:"
             placeholder="Digite sua cidade"
             data-store="session"
             data-encrypt="true"
             aria-label="Cidade no SessionStorage Criptografado"
+            minlength="3"
+            required
           ></catedral-input-local-session>
           <catedral-output
             store="globalStoreSessionEncrypt"
@@ -256,9 +278,12 @@
           <legend>Sem Criptografia</legend>
           <catedral-input-indexeddb
             id="input-db-username"
+            label="Usuário:"
             placeholder="Digite seu nome de usuário"
             data-store="db"
             aria-label="Nome de Usuário no IndexedDB"
+            minlength="3"
+            required
           ></catedral-input-indexeddb>
           <catedral-output
             store="globalStoreDB"
@@ -267,9 +292,12 @@
 
           <catedral-input-indexeddb
             id="input-db-password"
+            label="Senha:"
             placeholder="Digite sua senha"
             data-store="db"
             aria-label="Senha no IndexedDB"
+            minlength="4"
+            required
           ></catedral-input-indexeddb>
           <catedral-output
             store="globalStoreDB"
@@ -281,10 +309,13 @@
           <legend class="text-red">Com Criptografia</legend>
           <catedral-input-indexeddb
             id="input-db-username-encrypted"
+            label="Usuário:"
             placeholder="Digite seu nome de usuário"
             data-store="db"
             data-encrypt="true"
             aria-label="Nome de Usuário no IndexedDB Criptografado"
+            minlength="3"
+            required
           ></catedral-input-indexeddb>
           <catedral-output
             store="globalStoreEncryptDB"
@@ -294,11 +325,14 @@
 
           <catedral-input-indexeddb
             id="input-db-password-encrypted"
+            label="Senha:"
             placeholder="Digite sua senha"
             type="password"
             data-store="db"
             data-encrypt="true"
             aria-label="Senha no IndexedDB Criptografado"
+            minlength="4"
+            required
           ></catedral-input-indexeddb>
           <catedral-output
             store="globalStoreEncryptDB"
