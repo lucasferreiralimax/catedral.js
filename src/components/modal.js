@@ -103,6 +103,11 @@ export default class CatedralModal extends CatedralComponent {
   updateState(show) {
     this.state.show = show;
     if (this.overlay) {
+      if (show) {
+        document.body.style.setProperty("overflow", "hidden");
+      } else {
+        document.body.style.removeProperty("overflow");
+      }
       this.overlay.classList.toggle("active", show);
     }
     console.log("🔄 Estado do componente atualizado:", this.state);
