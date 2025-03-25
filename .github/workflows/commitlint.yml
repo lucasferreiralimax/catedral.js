@@ -1,0 +1,15 @@
+name: Enforce Semantic Commits
+
+on: 
+  push:
+  pull_request:
+
+jobs:
+  commitlint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do código
+        uses: actions/checkout@v4
+
+      - name: Rodar Commitlint
+        uses: wagoid/commitlint-github-action@v5
